@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 
 function App() {
 
-  const opciones = ['ADMIN', 'Charts', 'Pages', 'Tables', 'Paseo de perros']
+  const opciones = ['Home', 'Favoritos', 'Ver Todas']
 
   let nombre = ''
 

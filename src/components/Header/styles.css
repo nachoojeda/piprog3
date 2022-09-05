@@ -16,6 +16,11 @@ nav ul {
     align-items: center;
 }
 
+.logo{
+
+   height: 20px;
+}
+
 .main-nav li,
 .user li {
     margin: 0 10px;

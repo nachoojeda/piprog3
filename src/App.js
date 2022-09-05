@@ -3,6 +3,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 
+
+
 function App() {
 
   const opciones = ['Home', 'Favoritos', 'Ver Todas']
@@ -13,7 +15,7 @@ function App() {
     <div>
 
       <Header nombre={nombre} menu={opciones}/>
-     
+         
       <Footer/>
 
     </div>

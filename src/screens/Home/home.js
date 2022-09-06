@@ -1,31 +1,16 @@
 import React from 'react'
+import List from '../../components/List'
 
-import Tarjetas from '../../components/Tarjetas'
-import React, { Component } from 'react'
-
-class home extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            topList:[],
-            albums:[]
-
-        }
-    }
-
-    componentDidMount(){
-        fetch('')
-        .then()
-        .them()
-        .catch
-    }
-  render() {
-    return (
-      <div>
-        <Tarjetas/> 
-      </div>
-    )
-  }
+function Home() {
+  
+return (
+  <div>
+    <main>  
+     <List/>
+    </main>
+  </div>
+)
 }
 
-export default Home;
+export default Home
+

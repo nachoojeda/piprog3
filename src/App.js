@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Home from '../src/screens/Home/Home'
 
 
 
@@ -15,7 +16,7 @@ function App() {
     <div>
 
       <Header nombre={nombre} menu={opciones}/>
-         
+         <Home/>
       <Footer/>
 
     </div>

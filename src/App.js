@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Route, Switch } from "react-router-dom";
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from '../src/screens/Home/Home'
+import Home from '../src/screens/Home'
 
 
 
@@ -16,7 +17,7 @@ function App() {
     <div>
 
       <Header nombre={nombre} menu={opciones}/>
-         <Home/>
+       <Home/>
       <Footer/>
 
     </div>
@@ -24,3 +25,11 @@ function App() {
 }
 
 export default App;
+
+ 
+
+
+
+        <Route path = '/TodasPeliculas' component = {TodasPeliculas} />
+
+      

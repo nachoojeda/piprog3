@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+/*import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 class Card extends Component {
@@ -68,4 +68,4 @@ class Card extends Component {
     }
 }
 
-export default Card;
+export default Card; */

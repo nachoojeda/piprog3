@@ -26,16 +26,14 @@ function App() {
 
 export default App; */
 
-   /*     <Route path = '/TodasPeliculas' component = {TodasPeliculas} /> */
+
 
    import React from "react";
    import {Route, Switch} from "react-router-dom";
    import Footer from "./components/Footer/Footer";
-   import Header from "./components/Header/Header";
-   import List from './components/List/List'
-    import Home from './screens/Home/Home'
-  
-   
+   import Header from './components/Header/Header';
+   import Home from './screens/Home/Home';
+
    
    function App() {
        
@@ -43,14 +41,10 @@ export default App; */
        <React.Fragment>
            
            <Header/>
-   
-           <Switch>
-   
-           <Route path = '/' exact = {true} component = {Home}/>
-  
-           </Switch>
-           
+           {/* <Route path = '/' exact = {true} component = {Home}/> */}
+
            <Footer/>
+           
        </React.Fragment>
    );
    }

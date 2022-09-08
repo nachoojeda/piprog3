@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import './styles.css'
 
 function Header(props){
@@ -17,6 +17,39 @@ function Header(props){
                 <img src="./img/user.jpg" alt=""/>
                 </li>
         </ul>
+        </nav>
+    )
+}
+
+export default Header */
+
+import React from 'react';
+import { Link } from "react-router-dom";
+import './styles.css'
+
+
+
+function Header() {
+
+    return (
+        <nav>
+            
+            <h2><img className= 'logo' src="https://1000marcas.net/wp-content/uploads/2020/02/Logo-Itunes.png" alt=""/></h2>
+            
+            <ul className= 'main-nav' >
+
+
+                <li><Link exact={true} to='/'> </Link> </li>
+
+                <li><Link to='/'> Home </Link> </li>
+
+                <li><Link to='/Favorites'> Favorites </Link></li>
+
+                <li><Link to='/Every' > Every Album/Song </Link></li>
+
+        
+            </ul>
+            
         </nav>
     )
 }

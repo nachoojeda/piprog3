@@ -18,7 +18,7 @@ nav ul {
 
 .logo{
 
-   height: 20px;
+   height: 40px;
 }
 
 .main-nav li,
@@ -34,6 +34,17 @@ nav ul {
     font-weight: bold;
 }
 
+.main-nav li a{
+    text-decoration: none;
+    
+    color: #fff;
+}
+
+.main-nav li a:hover{
+    text-decoration: none;
+    
+    color: black;
+}
 .user img {
     width: 30px;
     border-radius: 90%;

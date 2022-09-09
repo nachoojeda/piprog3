@@ -54,9 +54,3 @@ main {
     flex-wrap:wrap ;
     justify-content: center;
 }
-
-.titulo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}

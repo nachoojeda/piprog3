@@ -1,143 +1,93 @@
-/*import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react'
+import './styles.css'
 
 class Card extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            favsMessage: 'Agregar a favoritos'
+    constructor(props){
+        super(props)
+        this.state ={
+            showMore:false,
+            textoBoton:'Show album title',
+            favorito:false
         }
     }
 
-    componentDidMount(){
-        let recuperoStorage = localStorage.getItem('favoritos');
-        let favoritos = JSON.parse(recuperoStorage);
-
-        if (favoritos.includes(this.props.data.id)) {
+    changeShowMore(){
+        if(this.state.showMore){
             this.setState({
-                favsMessage: 'Quitar de favoritos'
-            })
-        }
-
-
-
-    }
-
-    agregarYQuitarDeFavoritos(id) {
-        // Tiene que agregar un id dentro de un Array y guardarlo en localstorgae
-        // Si el id ya existe ofrecer al usarlo la posibilidad de quitar el id del array de favoritos
-        let favoritos = [];
-        let recuperoStorage = localStorage.getItem('favoritos') //Hay algo en localStorage?
-
-        if (recuperoStorage !== null) { //Si hay algo disinto de null osea hay algo en favoritos
-            let favoritosToArray = JSON.parse(recuperoStorage) // Devolvemelo y pasalo a JSON
-            favoritos = favoritosToArray //lo guardamos en el array 
-        }
-
-        if (favoritos.includes(id)) { //Si el id que se encontro arriba esta incluido en el  Array
-            favoritos = favoritos.filter(unId => unId !== id) // Agarra el array si matchea con el id que el usaurio eligio, se cambia el estado a Quitar 
-            this.setState({
-                favsMessage: 'Quitar de favoritos'
+                showMore: false,
+                textoBoton: 'Show album title'
             })
         } else {
-            favoritos.push(id); //Si no esta en el array se va a cambiar el estado a agregar. 
             this.setState({
-                favsMessage: 'Agregar a favoritos'
+                showMore: true,
+                textoBoton: 'Hide album title'
             })
         }
-
-        let favsAsString = JSON.stringify(favoritos);
-        localStorage.setItem("favoritos", favsAsString)
-        console.log(localStorage);
-
     }
 
-    render() {
+    favorito(id){
+        let storageFav = localStorage.getItem("favoritos")
+        if(storageFav == null){
+            let idsArr = [id]
+            let idsArrToString = JSON.stringify(idsArr)
+            localStorage.setItem('favoritos', idsArrToString)
+        } else{
+            let storageParsed = JSON.parse(storageFav)
+            storageParsed.push(id)
+            let storageParsedToString = JSON.stringify(storageParsed)
+            localStorage.setItem('favoritos', storageParsedToString)
+        }
+        this.setState({
+            favorito: true
+        })
+    }
+
+    sacarFavorito(id){
+        let storageFav = localStorage.getItem('favoritos')
+        let favsParsed = JSON.parse(storageFav)
+        let favsFiltered = favsParsed.filter(elm => elm !== id)
+        let favsToString = JSON.stringify(favsFiltered)
+        localStorage.setItem('favoritos', favsToString)
+        this.setState({
+            favorito: false
+        })
+    }
+    
+
+    render(){
         return (
-            <article className='character-card'>
+                <div className="character-card">
+                    <img 
+                        src={this.props.info.album.cover_big
+                        }
+                        alt={`Una imagen de ${this.props.info.artist.name}`}
+                    />
+                    <h4>{this.props.info.artist.name}</h4>
+                    <p>{this.props.info.title}</p>
 
-                <button className="button-54" onClick={() => this.agregarYQuitarDeFavoritos(this.props.data.id)}> {this.state.favsMessage} </button>
 
-                <h2>{this.props.title}</h2>
-                <Link to={`/pelicula/id/${this.props.data.id}`}>
-                    <img src={`https://image.tmdb.org/t/p/w342/${this.props.image}`} alt="" />
-                </Link>
-                <p className='more'>Detalle</p>
-            </article>
-        )
+                    {
+                    this.state.showMore ?
+                        <p>{this.props.info.album.title}</p>
+                    : 
+                    ''
+                    }
+
+
+                    <a onClick={
+                        ()=> this.changeShowMore()
+                    }>{this.state.textoBoton}</a>
+                    {
+                        this.state.favorito ?
+                            <button onClick={(id)=> this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>
+                        :
+                            <button onClick={(id)=> this.favorito(this.props.info.id)}>Add to favorites</button>
+                    }
+                    <button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>
+                </div>
+        
+            )
     }
 }
 
-export default Card; */
-
-import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-
-class Card extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            favsMessage: 'Agregar a favoritos'
-        }
-    }
-
-    componentDidMount(){
-        let recuperoStorage = localStorage.getItem('favoritos');
-        let favoritos = JSON.parse(recuperoStorage);
-
-        if (favoritos.includes(this.props.data.id)) {
-            this.setState({
-                favsMessage: 'Quitar de favoritos'
-            })
-        }
-
-
-
-    }
-
-    agregarYQuitarDeFavoritos(id) {
-        // Tiene que agregar un id dentro de un Array y guardarlo en localstorgae
-        // Si el id ya existe ofrecer al usarlo la posibilidad de quitar el id del array de favoritos
-        let favoritos = [];
-        let recuperoStorage = localStorage.getItem('favoritos') //Hay algo en localStorage?
-
-        if (recuperoStorage !== null) { //Si hay algo disinto de null osea hay algo en favoritos
-            let favoritosToArray = JSON.parse(recuperoStorage) // Devolvemelo y pasalo a JSON
-            favoritos = favoritosToArray //lo guardamos en el array 
-        }
-
-        if (favoritos.includes(id)) { //Si el id que se encontro arriba esta incluido en el  Array
-            favoritos = favoritos.filter(unId => unId !== id) // Agarra el array si matchea con el id que el usaurio eligio, se cambia el estado a Quitar 
-            this.setState({
-                favsMessage: 'Quitar de favoritos'
-            })
-        } else {
-            favoritos.push(id); //Si no esta en el array se va a cambiar el estado a agregar. 
-            this.setState({
-                favsMessage: 'Agregar a favoritos'
-            })
-        }
-
-        let favsAsString = JSON.stringify(favoritos);
-        localStorage.setItem("favoritos", favsAsString)
-        console.log(localStorage);
-
-    }
-
-    render() {
-        return (
-            <article className='character-card'>
-
-                <button className="button-54" onClick={() => this.agregarYQuitarDeFavoritos(this.props.data.id)}> {this.state.favsMessage} </button>
-
-                <h2>{this.props.title}</h2>
-                <Link to={`/pelicula/id/${this.props.data.id}`}>
-                    <img src={`https://image.tmdb.org/t/p/w342/${this.props.image}`} alt="" />
-                </Link>
-                <p className='more'>Detalle</p>
-            </article>
-        )
-    }
-}
-
-export default Card;
+export default Card

@@ -1,77 +1,76 @@
-/*import React, {Component} from "react";
-import Card from "../Card/Card";
+import React, {Component} from 'react'
+import Card from '../Card/Card'
+import './styles.css'
+
 
 
 class List extends Component {
-    constructor(props){
-        super(props);
-        this.state ={
-            dataPeliculas:[]
-        }
+  constructor(props){
+    super(props)
+    this.state={
+      charts: [],
+    //   backup: [],
+    //   pagina:0,
+      favorito:[]
     }
+  }
 
-    componentDidMount(){
-        fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=7a176cc95147be6e695be2faf0e8ff9c")
-        .then(response =>response.json())
-        .then(data => this.setState(
-            {dataPeliculas: data.results}
-        ))
-        .catch(error => console.log('el error fue '+ error ))
-    }
+  componentDidMount(){
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks&top?limit=10')
+    .then(resp => resp.json())
+    .then(data => this.setState({
+      charts: data.data,
+    //   backup: data.results,
+    //   pagina: this.state.pagina + 1
+    }))
+    .catch(err => console.log(err))
+  }
 
-    render(){
-        return(
-            <React.Fragment> 
-                <div>
-                    <h2 className="TituloC">Movies</h2>
-                </div>
-                <section className='card-container'>
-                    {this.state.dataPeliculas.map((unPelicula, idx )=> <Card key={unPelicula + idx} data={unPelicula}  image={unPelicula.poster_path} title={unPelicula.title}/>)}
-                </section>
-            </React.Fragment>
-        )
-            
-    }
-    }
+//   cargarMas(){
+//     fetch(`https://rickandmortyapi.com/api/character?page=${this.state.pagina + 1}`)
+//     .then(resp => resp.json())
+//     .then(data => this.setState({
+//       charts: this.state.charts.concat(data.results),
+//       pagina: this.state.pagina + 1
+//     }))
+//     .catch(err => console.log(err))
 
- export default List; 
+//   }
 
- */
 
- import React, {Component} from "react";
- import Card from "../Card/Card";
- 
- 
- class List extends Component {
-     constructor(props){
-         super(props);
-         this.state ={
-             dataPeliculas:[]
-         }
-     }
- 
-     componentDidMount(){
-         fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=7a176cc95147be6e695be2faf0e8ff9c")
-         .then(response =>response.json())
-         .then(data => this.setState(
-             {dataPeliculas: data.results}
-         ))
-         .catch(error => console.log('el error fue '+ error ))
-     }
- 
-     render(){
-         return(
-             <React.Fragment> 
-                 <div>
-                     <h2 className="TituloC">Movies</h2>
-                 </div>
-                 <section className='card-container'>
-                     {this.state.dataPeliculas.map((unPelicula, idx )=> <Card key={unPelicula + idx} data={unPelicula}  image={unPelicula.poster_path} title={unPelicula.title}/>)}
-                 </section>
-             </React.Fragment>
-         )
-             
-     }
-     }
- 
-  export default List;
+  borrar(id){
+    let arrayFiltrado = this.state.charts.filter(chart => chart.id !== id)
+    this.setState({
+      charts: arrayFiltrado
+    })
+  }
+
+//   backup(){
+//     this.setState({
+//       charts: this.state.backup
+//     })
+//   }
+
+
+  render(){
+    return (
+      <>
+        <h1 className='titulo'>Top Charts</h1>
+        <section className="card-container">
+          {this.state.charts.map((chart, idx) => 
+            <Card 
+              key={`${Date.now()}-${idx}`}  
+              info={chart}
+              borrar={(name)=> this.borrar(name)}
+              favorito={(id)=> this.favorites(id)}
+            />)}
+
+            {/* <button onClick={()=> this.backup()}>Backup</button>
+            <button onClick={()=> this.cargarMas()}>Cargar mas</button> */}
+        </section>
+      </>
+    )
+  }
+}
+
+export default  List

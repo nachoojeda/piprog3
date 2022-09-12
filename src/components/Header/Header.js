@@ -45,7 +45,7 @@ function Header() {
 
                 <li><Link to='/Favorites'> Favorites </Link></li>
 
-                <li><Link to='/Every' > Every Album/Song </Link></li>
+                
 
         
             </ul>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Card from '../Card/Card'
 import './styles.css'
+import { Link } from "react-router-dom";
 
 
 
@@ -16,7 +17,7 @@ class List extends Component {
   }
 
   componentDidMount(){
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12&limit=12')
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12&limit=4')
     .then(resp => resp.json())
     .then(data => {
       console.log(data)
@@ -57,7 +58,7 @@ class List extends Component {
   render(){
     return (
       <>
-        <h1 className='titulo'>Top Charts</h1>
+        <h1 className='titulo'>Top 50 Canciones Mundial</h1>
         <section className="card-container">
           {this.state.charts.map((chart, idx) => 
             <Card 
@@ -68,6 +69,9 @@ class List extends Component {
             />)}
 
             <button onClick={()=> this.backup()}>Volver atras</button> 
+            <button onClick={()=> this.verTodas()}>
+            <Link to='/Every' > Ver todas </Link>
+            </button>
         </section>
       </>
     )

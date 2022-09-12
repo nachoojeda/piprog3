@@ -11,7 +11,7 @@ class Every extends Component {
     }
   }
   componentDidMount(){
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12&limit=32')
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12&limit=36')
     .then(resp => resp.json())
     .then(data => {
       console.log(data)
@@ -22,10 +22,22 @@ class Every extends Component {
     })})
     .catch(err => console.log(err))
   }
+  borrar(id){
+    let arrayFiltrado = this.state.charts.filter(chart => chart.id !== id)
+    this.setState({
+      charts: arrayFiltrado
+    })
+  }
+
+  backup(){
+    this.setState({
+      charts: this.state.backup
+    })
+  }
   render() {
     return (
       <>
-      <h1 className='titulo'>Todas las canciones y albumes</h1>
+      <h1 className='titulo'>Todas las canciones</h1>
       <section className="card-container">
         {this.state.charts.map((chart, idx) => 
           <Card 

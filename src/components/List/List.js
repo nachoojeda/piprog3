@@ -9,20 +9,22 @@ class List extends Component {
     super(props)
     this.state={
       charts: [],
-    //   backup: [],
+      backup: [],
     //   pagina:0,
       favorito:[]
     }
   }
 
   componentDidMount(){
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12')
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12&limit=12')
     .then(resp => resp.json())
-    .then(data => this.setState({
+    .then(data => {
+      console.log(data)
+      this.setState({
       charts: data.data,
-    //   backup: data.results,
+      backup: data.data,
     //   pagina: this.state.pagina + 1
-    }))
+    })})
     .catch(err => console.log(err))
   }
 
@@ -45,11 +47,11 @@ class List extends Component {
     })
   }
 
-//   backup(){
-//     this.setState({
-//       charts: this.state.backup
-//     })
-//   }
+  backup(){
+    this.setState({
+      charts: this.state.backup
+    })
+  }
 
 
   render(){
@@ -65,8 +67,7 @@ class List extends Component {
               favorito={(id)=> this.favorites(id)}
             />)}
 
-            {/* <button onClick={()=> this.backup()}>Backup</button>
-            <button onClick={()=> this.cargarMas()}>Cargar mas</button> */}
+            <button onClick={()=> this.backup()}>Volver atras</button> 
         </section>
       </>
     )

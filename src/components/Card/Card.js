@@ -7,7 +7,8 @@ class Card extends Component {
         this.state ={
             showMore:false,
             textoBoton:'Show album title',
-            favorito:false
+            favorito:false,
+            backup: []
         }
     }
 
@@ -52,6 +53,12 @@ class Card extends Component {
             favorito: false
         })
     }
+
+    backup(){
+        this.setState({
+          charts: this.state.backup
+        })
+      }
     
 
     render(){
@@ -84,6 +91,7 @@ class Card extends Component {
                             <button onClick={(id)=> this.favorito(this.props.info.id)}>Add to favorites</button>
                     }
                     <button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>
+                    
                 </div>
         
             )

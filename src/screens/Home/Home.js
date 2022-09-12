@@ -16,13 +16,15 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks&top?limit=10')
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12')
     .then(resp => resp.json())
     // .then(data=>console.log(data))
-    .then(data => this.setState({
+    .then(data => {
+      console.log(data)
+      this.setState({
       topCharts: data.data,
       ready:true
-    }))
+    })})
     
     .catch(err => console.log(err))
   }

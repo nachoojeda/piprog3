@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import List from '../../components/List/List'
 import { ColorRing } from  'react-loader-spinner'
+import Results  from '../../components/Results/Results';
+import Card from '../../components/Card/Card';
 
 
 class Home extends Component {
@@ -13,6 +15,19 @@ class Home extends Component {
       ready:false
 
     }
+  }
+
+  buscarData(valor){
+    fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/search?q=${valor}`)
+    .then (resp=> resp.json())
+    .then(data=> {
+      console.log(data)
+      this.setState({
+        resultadosBusqueda:data.data,
+        readyResultados: true
+      })
+    })
+    .catch(err=> console.log(err))
   }
 
   componentDidMount() {
@@ -31,6 +46,16 @@ class Home extends Component {
   
   render() {
     return (
+<>
+      <Results metodoQueBusca ={(valor)=> this.buscarData(valor)} />
+      
+      {
+            this.state.readyResultados
+            ?
+            <Card esBusqueda={true} info={this.state.resultadosBusqueda} />
+            : ''
+      }
+
       <div>
           {
           this.state.ready ? 
@@ -51,6 +76,7 @@ class Home extends Component {
         }
         
       </div>
+    </>
     )
   }
 }

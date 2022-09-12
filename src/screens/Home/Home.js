@@ -24,7 +24,7 @@ class Home extends Component {
       console.log(data)
       this.setState({
         resultadosBusqueda:data.data,
-        readyResultados: true
+        ready: true
       })
     })
     .catch(err=> console.log(err))

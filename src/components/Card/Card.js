@@ -6,9 +6,10 @@ class Card extends Component {
         super(props)
         this.state ={
             showMore:false,
-            textoBoton:'Show album title',
+            textoBoton:'Show more',
             favorito:false,
-            backup: []
+            backup: [] ,
+            // backupAlbum: []
         }
     }
 
@@ -16,12 +17,12 @@ class Card extends Component {
         if(this.state.showMore){
             this.setState({
                 showMore: false,
-                textoBoton: 'Show album title'
+                textoBoton: 'Show more'
             })
         } else {
             this.setState({
                 showMore: true,
-                textoBoton: 'Hide album title'
+                textoBoton: 'Hide info'
             })
         }
     }
@@ -59,10 +60,18 @@ class Card extends Component {
           charts: this.state.backup
         })
       }
+
+    //   backupAlbum(){
+    //     this.setState({
+    //       albums: this.state.backup
+    //     })
+    //   }
     
 
     render(){
         return (
+
+            <div>
                 <div className="character-card">
                     <img 
                         src={this.props.info.album.cover_big
@@ -75,15 +84,22 @@ class Card extends Component {
 
                     {
                     this.state.showMore ?
-                        <p>{this.props.info.album.title}</p>
+                        <p>
+                           Album title: {this.props.info.album.title}
+                        <br></br>
+                       Duration: {this.props.info.duration} m
+                        <br></br>
+                       Ranking: {this.props.info.position - 12}
+                        </p>
+                        
                     : 
                     ''
                     }
 
-
+                    <button>
                     <a onClick={
                         ()=> this.changeShowMore()
-                    }>{this.state.textoBoton}</a>
+                    }>{this.state.textoBoton}</a></button>
                     {
                         this.state.favorito ?
                             <button onClick={(id)=> this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>
@@ -93,6 +109,44 @@ class Card extends Component {
                     <button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>
                     
                 </div>
+
+{/* 
+<div className="character-card">
+<img 
+    src={this.props.infoAlbum.cover_big
+    }
+    alt={`Una imagen de ${this.props.infoAlbum.artist.name}`}
+/>
+<h4>{this.props.infoAlbum.artist.name}</h4>
+<p>{this.props.infoAlbum.title}</p>
+
+
+{
+this.state.showMore ?
+    <p>
+       Album title: {this.props.infoAlbum.album.title}
+    
+    </p>
+    
+: 
+''
+}
+
+<button>
+<a onClick={
+    ()=> this.changeShowMore()
+}>{this.state.textoBoton}</a></button>
+{
+    this.state.favorito ?
+        <button onClick={(id)=> this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>
+    :
+        <button onClick={(id)=> this.favorito(this.props.info.id)}>Add to favorites</button>
+}
+<button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>
+
+</div> */}
+
+</div>
         
             )
     }

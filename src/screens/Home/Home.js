@@ -43,6 +43,21 @@ class Home extends Component {
     
     .catch(err => console.log(err))
   }
+
+  // componentDidMount() {
+  //   fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/albums')
+  //   .then(resp => resp.json())
+  //   // .then(data=>console.log(data))
+  //   .then(data => {
+  //     console.log(data)
+  //     this.setState({
+  //     topAlbums: data.data,
+  //     ready:true
+  //   })})
+    
+  //   .catch(err => console.log(err))
+  // }
+
   
   render() {
     return (

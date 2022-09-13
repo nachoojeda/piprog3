@@ -11,13 +11,15 @@ class List extends Component {
     this.state={
       charts: [],
       backup: [],
+      // albums: [],
+      // backupAlbum: [],
     //   pagina:0,
       favorito:[]
     }
   }
 
   componentDidMount(){
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12&limit=4')
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12&limit10')
     .then(resp => resp.json())
     .then(data => {
       console.log(data)
@@ -29,16 +31,22 @@ class List extends Component {
     .catch(err => console.log(err))
   }
 
-//   cargarMas(){
-//     fetch(`https://rickandmortyapi.com/api/character?page=${this.state.pagina + 1}`)
-//     .then(resp => resp.json())
-//     .then(data => this.setState({
-//       charts: this.state.charts.concat(data.results),
-//       pagina: this.state.pagina + 1
-//     }))
-//     .catch(err => console.log(err))
+  // componentDidMount(){
+  //   fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/albums')
+  //   .then(resp => resp.json())
+  //   .then(data => {
+  //     console.log(data)
+  //     this.setState({
+  //     albums: data.data,
+  //     backupAlbum: data.data,
+  //   //   pagina: this.state.pagina + 1
+  //   })})
+  //   .catch(err => console.log(err))
+  // }
+  
+  
 
-//   }
+
 
 
   borrar(id){
@@ -54,11 +62,18 @@ class List extends Component {
     })
   }
 
+  // backupAlbum(){
+  //   this.setState({
+  //     albums: this.state.backupAlbum
+  //   })
+  // }
+
 
   render(){
     return (
       <>
-        <h1 className='titulo'>Top 50 Canciones Mundial</h1>
+       <h1 className='titulo'>Home</h1>
+        <h1 className='titulo'>Top 10 Charts</h1>
         <section className="card-container">
           {this.state.charts.map((chart, idx) => 
             <Card 
@@ -73,6 +88,24 @@ class List extends Component {
             <Link to='/Every' > Ver todas </Link>
             </button>
         </section>
+        
+
+
+        {/* <h1 className='titulo'>Top 10 Albums</h1>
+        <section className="card-container">
+          {this.state.albums.map((album, idx) => 
+            <Card 
+              key={`${Date.now()}-${idx}`}  
+              info={album}
+              borrar={(name)=> this.borrar(name)}
+              favorito={(id)=> this.favorites(id)}
+            />)}
+
+            <button onClick={()=> this.backupAlbum()}>Volver atras</button> 
+            <button onClick={()=> this.verTodas()}>
+            <Link to='/Every' > Ver todas </Link>
+            </button>
+        </section> */}
       </>
     )
   }

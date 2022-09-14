@@ -75,7 +75,7 @@ class Card extends Component {
             <div>
                 <div className="character-card">
 
-                <Link to='/SongDetail'> <img className="foto" src={this.props.info.album.cover_big} alt={`Una imagen de ${this.props.info.artist.name}`}/> </Link>
+                <Link to={`/SongDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.album.cover_big} alt={`Una imagen de ${this.props.info.artist.name}`}/> </Link>
                     
                     <h4>{this.props.info.artist.name}</h4>
                     <p>{this.props.info.title}</p>
@@ -95,10 +95,10 @@ class Card extends Component {
                     ''
                     }
 
-                    <button>
-                    <a onClick={
+                    <button onClick={
                         ()=> this.changeShowMore()
-                    }>{this.state.textoBoton}</a></button>
+                    }>{this.state.textoBoton}
+                    </button>
                     {
                         this.state.favorito ?
                             <button onClick={(id)=> this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>

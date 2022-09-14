@@ -6,6 +6,7 @@
    import Error from './components/Error/Error'
    import Every from './components/Every/Every';
    import Favorites from './components/Favorites/Favorites';
+import Details from "./components/SongDetail/SongDetail";
 
 
    
@@ -20,6 +21,7 @@
               <Route path = '/' exact={true} component = {Home}/> 
               <Route path = '/Favorites' component = {Favorites}/> 
               <Route path = '/Every' component = {Every}/> 
+              <Route path= '/SongDetail/:id' component = {Details} />
               <Route path= "" component = {Error}/>
               </Switch>
            

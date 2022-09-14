@@ -61,7 +61,7 @@ class Home extends Component {
           this.state.ready ? 
         <div> 
           <List info={this.state.result.tracks.data} titulo={'Top Charts'}/>
-          {/* <List info={this.state.result.albums.data} titulo={'Top Albums'}/> */}
+          <List info={this.state.result.albums.data} titulo={'Top Albums'}/>
         </div>
 
         : <ColorRing

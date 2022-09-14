@@ -10,7 +10,6 @@ class Card extends Component {
             textoBoton:'Show more',
             favorito:false,
             backup: [] ,
-            // backupAlbum: []
         }
     }
 
@@ -62,33 +61,28 @@ class Card extends Component {
         })
       }
 
-    //   backupAlbum(){
-    //     this.setState({
-    //       albums: this.state.backup
-    //     })
-    //   }
-    
+
 
     render(){
         return (
 
-            <div>
+            
                 <div className="character-card">
 
-                <Link to={`/SongDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.album.cover_big} alt={`Una imagen de ${this.props.info.artist.name}`}/> </Link>
+                <Link to={`/SongDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.cover_big || this.props.info.album.cover_big}/> </Link>
                     
-                    <h4>{this.props.info.artist.name}</h4>
-                    <p>{this.props.info.title}</p>
+                     <h4>{ this.props.info.title}</h4>
+                    
 
 
                     {
                     this.state.showMore ?
+
+                    
                         <p>
-                           Album title: {this.props.info.album.title}
-                        <br></br>
-                       Duration: {this.props.info.duration} m
-                        <br></br>
-                       Ranking: {this.props.info.position - 12}
+                        Artist: {this.props.info.artist.name }
+                       <br></br>
+                       Ranking: {this.props.info.position}
                         </p>
                         
                     : 
@@ -105,47 +99,11 @@ class Card extends Component {
                         :
                             <button onClick={(id)=> this.favorito(this.props.info.id)}>Add to favorites</button>
                     }
-                    <button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>
+                    {/* <button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>  */}
                     
                 </div>
 
-{/* 
-<div className="character-card">
-<img 
-    src={this.props.infoAlbum.cover_big
-    }
-    alt={`Una imagen de ${this.props.infoAlbum.artist.name}`}
-/>
-<h4>{this.props.infoAlbum.artist.name}</h4>
-<p>{this.props.infoAlbum.title}</p>
 
-
-{
-this.state.showMore ?
-    <p>
-       Album title: {this.props.infoAlbum.album.title}
-    
-    </p>
-    
-: 
-''
-}
-
-<button>
-<a onClick={
-    ()=> this.changeShowMore()
-}>{this.state.textoBoton}</a></button>
-{
-    this.state.favorito ?
-        <button onClick={(id)=> this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>
-    :
-        <button onClick={(id)=> this.favorito(this.props.info.id)}>Add to favorites</button>
-}
-<button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>
-
-</div> */}
-
-</div>
         
             )
     }

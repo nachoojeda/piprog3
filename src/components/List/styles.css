@@ -60,3 +60,10 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+.boton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

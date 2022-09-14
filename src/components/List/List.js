@@ -20,6 +20,7 @@ class List extends Component {
 
   componentDidMount(){
     fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12&limit10')
+    //    'https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?index=12&limit10'
     .then(resp => resp.json())
     .then(data => {
       console.log(data)
@@ -31,24 +32,7 @@ class List extends Component {
     .catch(err => console.log(err))
   }
 
-  // componentDidMount(){
-  //   fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/albums')
-  //   .then(resp => resp.json())
-  //   .then(data => {
-  //     console.log(data)
-  //     this.setState({
-  //     albums: data.data,
-  //     backupAlbum: data.data,
-  //   //   pagina: this.state.pagina + 1
-  //   })})
-  //   .catch(err => console.log(err))
-  // }
   
-  
-
-
-
-
   borrar(id){
     let arrayFiltrado = this.state.charts.filter(chart => chart.id !== id)
     this.setState({
@@ -88,24 +72,7 @@ class List extends Component {
             <Link to='/Every' > Ver todas </Link>
             </button>
         </section>
-        
-
-
-        {/* <h1 className='titulo'>Top 10 Albums</h1>
-        <section className="card-container">
-          {this.state.albums.map((album, idx) => 
-            <Card 
-              key={`${Date.now()}-${idx}`}  
-              info={album}
-              borrar={(name)=> this.borrar(name)}
-              favorito={(id)=> this.favorites(id)}
-            />)}
-
-            <button onClick={()=> this.backupAlbum()}>Volver atras</button> 
-            <button onClick={()=> this.verTodas()}>
-            <Link to='/Every' > Ver todas </Link>
-            </button>
-        </section> */}
+      
       </>
     )
   }

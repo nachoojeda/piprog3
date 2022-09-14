@@ -11,7 +11,7 @@ class Home extends Component {
     super(props)
     this.state={
       topCharts:{},
-      albums:{},
+      topAlbums:{},
       ready:false
 
     }
@@ -31,32 +31,18 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12')
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?index=10')
     .then(resp => resp.json())
-    // .then(data=>console.log(data))
     .then(data => {
       console.log(data)
       this.setState({
-      topCharts: data.data,
+      result: data,
       ready:true
     })})
     
     .catch(err => console.log(err))
   }
 
-  // componentDidMount() {
-  //   fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/albums')
-  //   .then(resp => resp.json())
-  //   // .then(data=>console.log(data))
-  //   .then(data => {
-  //     console.log(data)
-  //     this.setState({
-  //     topAlbums: data.data,
-  //     ready:true
-  //   })})
-    
-  //   .catch(err => console.log(err))
-  // }
 
   
   render() {
@@ -75,7 +61,8 @@ class Home extends Component {
           {
           this.state.ready ? 
         <div> 
-          <List info={this.state.topCharts}/>
+          <List info={this.state.result.tracks.data} titulo={'Top Charts'}/>
+          {/* <List info={this.state.result.albums.data} titulo={'Top Albums'}/> */}
         </div>
 
         : <ColorRing

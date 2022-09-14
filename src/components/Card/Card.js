@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './styles.css'
+import { Link } from "react-router-dom";
 
 class Card extends Component {
     constructor(props){
@@ -73,11 +74,9 @@ class Card extends Component {
 
             <div>
                 <div className="character-card">
-                    <img 
-                        src={this.props.info.album.cover_big
-                        }
-                        alt={`Una imagen de ${this.props.info.artist.name}`}
-                    />
+
+                <Link to='/SongDetail'> <img className="foto" src={this.props.info.album.cover_big} alt={`Una imagen de ${this.props.info.artist.name}`}/> </Link>
+                    
                     <h4>{this.props.info.artist.name}</h4>
                     <p>{this.props.info.title}</p>
 

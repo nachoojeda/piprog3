@@ -11,3 +11,7 @@
 .card-container .character-card img{
     max-width: 15rem;
 }
+
+img .foto:hover{
+    background-color: bisque;
+}

@@ -19,14 +19,14 @@ class List extends Component {
   }
 
   componentDidMount(){
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12')
-    //    'https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?index=12&limit10'
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?index=10')
+    //    'https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?index=10'
     .then(resp => resp.json())
     .then(data => {
       console.log(data)
       this.setState({
-      charts: data.data,
-      backup: data.data,
+      charts: data,
+      backup: data,
     //   pagina: this.state.pagina + 1
     })})
     .catch(err => console.log(err))
@@ -53,13 +53,18 @@ class List extends Component {
   // }
 
 
-  render(){
+  render(props){
     return (
       <>
-       <h1 className='titulo'>Home</h1>
-        <h1 className='titulo'>Top 10 Charts</h1>
+       <h1 className='titulo'>{this.props.titulo}</h1>
         <section className="card-container">
-          {this.state.charts.map((chart, idx) => 
+          
+        {/* {props.info.map((item, idx) =>{
+            console.log(item);
+        return <Card key={`${Date.now()}-${idx}`} data={item}/> */}
+
+          {this.props.info.map((chart, idx) => 
+            
             <Card 
               key={`${Date.now()}-${idx}`}  
               info={chart}
@@ -69,6 +74,7 @@ class List extends Component {
 
             
         </section>
+        
         <button onClick={()=> this.backup()}>Volver atras</button> 
             <button onClick={()=> this.verTodas()}>
             <Link to='/Every' > Ver todas </Link>

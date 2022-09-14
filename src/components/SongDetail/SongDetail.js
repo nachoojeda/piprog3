@@ -27,17 +27,13 @@ class Details extends Component {
     render() {
         return (
             <section className="card-container">
-          {this.state.songs.map((chart, idx) => 
-            <Card 
-              key={`${Date.now()}-${idx}`}  
-              info={chart}
-              borrar={(name)=> this.borrar(name)}
-              favorito={(id)=> this.favorites(id)}
-            />)}
-
-            <button onClick={()=> this.backup()}>Volver atras</button> 
-            
-        </section>
+                <div>
+                    <h1>{this.state.songs.title}</h1>
+                    <h3>{this.state.songs.duration}</h3>
+                    <img src={this.state.songs.md5_image} />
+                </div>
+                
+            </section>
         )
     }
 }

@@ -67,11 +67,12 @@ class List extends Component {
               favorito={(id)=> this.favorites(id)}
             />)}
 
-            <button onClick={()=> this.backup()}>Volver atras</button> 
+            
+        </section>
+        <button onClick={()=> this.backup()}>Volver atras</button> 
             <button onClick={()=> this.verTodas()}>
             <Link to='/Every' > Ver todas </Link>
             </button>
-        </section>
       
       </>
     )

@@ -47,8 +47,9 @@ class Every extends Component {
             favorito={(id)=> this.favorites(id)}
           />)}
 
-          <button onClick={()=> this.backup()}>Volver atras</button> 
+          
       </section>
+      <button className={'boton'} onClick={()=> this.backup()}>Volver atras</button> 
     </>
     )
   }

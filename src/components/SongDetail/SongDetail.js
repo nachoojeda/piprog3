@@ -1,32 +1,43 @@
-import React, {Component} from 'react'
-
+import React, { Component } from 'react'
+import Card from '../Card/Card'
+import './styles.css'
 
 class Details extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             id: props.match.params.id,
-            songs:{}
+            songs: {},
+
         }
-    } 
-    componentDidMount(){
-        fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/:${this.state.id}`)
-        
-        .then(resp => resp.json())
-        .then(data => {
-          console.log(data)
-          this.setState({
-          songs: data,
-        })})
-        .catch(err => console.log(err))
-      }
-    
-    render(){
+    }
+    componentDidMount() {
+        fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/track/${this.state.id}`)
+
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data)
+                this.setState({
+                    songs: data,
+                })
+            })
+            .catch(err => console.log(err))
+    }
+
+    render() {
         return (
-            <div>
-           <image src={this.state.songs.md5_image
-}></image>
-            </div>
+            <section className="card-container">
+          {this.state.songs.map((chart, idx) => 
+            <Card 
+              key={`${Date.now()}-${idx}`}  
+              info={chart}
+              borrar={(name)=> this.borrar(name)}
+              favorito={(id)=> this.favorites(id)}
+            />)}
+
+            <button onClick={()=> this.backup()}>Volver atras</button> 
+            
+        </section>
         )
     }
 }

@@ -61,9 +61,7 @@ class List extends Component {
         </section>
         
         {/* <button onClick={()=> this.backup()}>Volver atras</button>  */}
-            <button className='boton' onClick={()=> this.verTodas()}>
-            <Link to='/Every' > Ver todas </Link>
-            </button>
+            
       
       </div>
     )

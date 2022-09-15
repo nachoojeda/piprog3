@@ -12,7 +12,7 @@ class Every extends Component {
     }
   }
   componentDidMount() {
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?index=12&limit=10')
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/albums?index=12&limit=10')
       .then(resp => resp.json())
       .then(data => {
         console.log(data)

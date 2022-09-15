@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Card from '../Card/Card'
 import { ColorRing } from 'react-loader-spinner'
+import ReactPlayer from 'react-player/youtube'
+
 import './styles.css'
 
 class Details extends Component {
@@ -34,10 +36,15 @@ class Details extends Component {
                     {
                         this.state.ready ?
                             <div>
-                                <h1>{this.state.songs.title}</h1>
-                                <h3>{this.state.songs.duration}</h3>
-                                
                                 <img src={this.state.songs.album.cover_big} />
+                                <h1>{this.state.songs.title}</h1>
+                                <h3>{this.state.songs.artist.name}</h3>
+                                <h3>{this.state.songs.album.title}</h3>
+                                <ReactPlayer url='{this.state.songs.preview}' />
+                                
+
+                                
+                                
                             </div>
 
                             : <ColorRing

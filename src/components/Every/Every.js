@@ -8,7 +8,8 @@ class Every extends Component {
       charts: [],
       backup: [],
       favorito: [],
-      ready:false
+      ready:false,
+      index: 22
     }
   }
   componentDidMount() {
@@ -39,10 +40,11 @@ class Every extends Component {
   }
 
   cargarMas(){
-    fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?offset=12&limit=18`)
+    fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?offset=1&limit=18&index=${this.state.index}`)
     .then(resp => resp.json())
     .then(data => this.setState({
       charts: this.state.charts.concat(data.data),
+      index: this.state.index + 18
     }))
     .catch(err => console.log(err))
 
@@ -67,6 +69,11 @@ class Every extends Component {
 
 
                 </section>
+
+                {/* <a onClick={
+                        ()=> this.changeShowMore()
+                    }>{this.state.textoBoton}</a> */}
+
                 <button onClick={()=> this.cargarMas()}>Cargar mas</button>
                 <button className='boton' onClick={() => this.backup()}>Volver atras</button>
               </div>

@@ -36,7 +36,8 @@ class Details extends Component {
                             <div>
                                 <h1>{this.state.songs.title}</h1>
                                 <h3>{this.state.songs.duration}</h3>
-                                <img src={this.state.songs.md5_image} />
+                                
+                                <img src={this.state.songs.album.cover_big} />
                             </div>
 
                             : <ColorRing

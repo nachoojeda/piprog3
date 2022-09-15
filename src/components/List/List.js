@@ -11,7 +11,6 @@ class List extends Component {
     this.state={
       charts: [],
       backup: [],
-    //   pagina:0,
       favorito:[]
     }
   }
@@ -24,7 +23,6 @@ class List extends Component {
       this.setState({
       charts: data,
       backup: data,
-    //   pagina: this.state.pagina + 1
     })})
     .catch(err => console.log(err))
   }

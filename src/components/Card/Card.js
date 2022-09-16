@@ -1,20 +1,20 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './styles.css'
 import { Link } from "react-router-dom";
 
 class Card extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state ={
-            showMore:false,
-            textoBoton:'Show more',
-            favorito:false,
-            backup: [] ,
+        this.state = {
+            showMore: false,
+            textoBoton: 'Show more',
+            favorito: false,
+            backup: [],
         }
     }
 
-    changeShowMore(){
-        if(this.state.showMore){
+    changeShowMore() {
+        if (this.state.showMore) {
             this.setState({
                 showMore: false,
                 textoBoton: 'Show more'
@@ -27,13 +27,13 @@ class Card extends Component {
         }
     }
 
-    favorito(id){
+    favorito(id) {
         let storageFav = localStorage.getItem("favoritos")
-        if(storageFav == null){
+        if (storageFav == null) {
             let idsArr = [id]
             let idsArrToString = JSON.stringify(idsArr)
             localStorage.setItem('favoritos', idsArrToString)
-        } else{
+        } else {
             let storageParsed = JSON.parse(storageFav)
             storageParsed.push(id)
             let storageParsedToString = JSON.stringify(storageParsed)
@@ -44,7 +44,7 @@ class Card extends Component {
         })
     }
 
-    sacarFavorito(id){
+    sacarFavorito(id) {
         let storageFav = localStorage.getItem('favoritos')
         let favsParsed = JSON.parse(storageFav)
         let favsFiltered = favsParsed.filter(elm => elm !== id)
@@ -55,57 +55,55 @@ class Card extends Component {
         })
     }
 
-    backup(){
+    backup() {
         this.setState({
-          charts: this.state.backup
+            charts: this.state.backup
         })
-      }
+    }
 
 
 
-    render(){
+    render() {
         return (
 
-            
-                <div className="character-card">
 
-                <Link to={`/SongDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.cover_big || this.props.info.album.cover_big}/> </Link>
-                    
-                     <h4>{ this.props.info.title}</h4>
-                    
+            <div className="character-card">
 
-
-                    {
+                {
+                    this.props.info.type==="track" ?
+                    <Link to={`/SongDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.cover_big || this.props.info.album.cover_big} /> </Link>
+                    :
+                    <Link to={`/AlbumDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.cover_big || this.props.info.album.cover_big} /> </Link>
+                }    
+                <h4>{this.props.info.title}</h4>
+                {
                     this.state.showMore ?
-
-                    
                         <p>
-                        Artist: {this.props.info.artist.name }
-                       <br></br>
-                       Ranking: {this.props.info.position}
+                            Artist: {this.props.info.artist.name}
+                            <br></br>
+                            Ranking: {this.props.info.position}
                         </p>
-                        
-                    : 
-                    ''
-                    }
-
-                    <button onClick={
-                        ()=> this.changeShowMore()
-                    }>{this.state.textoBoton}
-                    </button>
-                    {
-                        this.state.favorito ?
-                            <button onClick={(id)=> this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>
                         :
-                            <button onClick={(id)=> this.favorito(this.props.info.id)}>Add to favorites</button>
-                    }
-                    {/* <button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>  */}
-                    
-                </div>
+                        ''
+                }
+
+                <button onClick={
+                    () => this.changeShowMore()
+                }>{this.state.textoBoton}
+                </button>
+                {
+                    this.state.favorito ?
+                        <button onClick={(id) => this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>
+                        :
+                        <button onClick={(id) => this.favorito(this.props.info.id)}>Add to favorites</button>
+                }
+                {/* <button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>  */}
+
+            </div>
 
 
-        
-            )
+
+        )
     }
 }
 

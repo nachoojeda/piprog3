@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import Card from '../Card/Card'
 import { ColorRing } from 'react-loader-spinner'
-class Every extends Component {
+class EveryAlbum extends Component {
   constructor(props) {
     super(props)
     this.state = {
       charts: [],
       backup: [],
       favorito: [],
-      ready:false
+      ready:false,
+      index: 22
     }
   }
   componentDidMount() {
@@ -39,10 +40,11 @@ class Every extends Component {
   }
 
   cargarMas(){
-    fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks?offset=12&limit=18`)
+    fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/albums?offset=1&limit=18&index=${this.state.index}`)
     .then(resp => resp.json())
     .then(data => this.setState({
       charts: this.state.charts.concat(data.data),
+      index: this.state.index + 18
     }))
     .catch(err => console.log(err))
 
@@ -55,7 +57,7 @@ class Every extends Component {
           {
             this.state.ready ?
               <div>
-                <h1 className='titulo'>Todas las canciones</h1>
+                <h1 className='titulo'>Todos los albumes</h1>
                 <section className="card-container">
                   {this.state.charts.map((chart, idx) =>
                     <Card
@@ -105,4 +107,4 @@ class Every extends Component {
   }
 }
 
-export default Every
+export default EveryAlbum

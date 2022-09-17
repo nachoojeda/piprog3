@@ -21,11 +21,11 @@ function App() {
 
             <Switch>
                 <Route path='/' exact={true} component={Home} />
-                <Route path='/Favorites' component={Favorites} />
-                <Route path='/Every' component={Every} />
-                <Route path='/EveryAlbum' component={EveryAlbum} />
-                <Route path='/SongDetail/:id' component={Details} />
-                <Route path='/AlbumDetail/:id' component={AlbumDetails} />
+                <Route path='/favorites' component={Favorites} />
+                <Route path='/every' component={Every} />
+                <Route path='/everyAlbum' component={EveryAlbum} />
+                <Route path='/songDetail/:id' component={Details} />
+                <Route path='/albumDetail/:id' component={AlbumDetails} />
                 <Route path="" component={Error} />
             </Switch>
 

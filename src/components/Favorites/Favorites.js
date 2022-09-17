@@ -7,6 +7,7 @@ class Favorites extends Component {
     this.state = {
         card:[]
     }
+    console.log('hola')
   }
   
   componentDidMount() {
@@ -38,17 +39,14 @@ class Favorites extends Component {
    }
   
   render() {
+    console.log('llega al render')
     console.log(this.state.dataCard);
     return (
       <React.Fragment>
       <div>
           <h2 className="titulo"> Favorites</h2>
       </div>
-      <section className='card-container'>
-                    {this.state.dataCard.map((unCard, idx )=> <Card key={unCard + idx} data={unCard}  image={unCard.poster_path} title={unCard.title}/>)}
-                    {/* nuevo estado de favoritos con la info de localstorage */}
-                </section>
-    )
+
     </React.Fragment>
     )
   }

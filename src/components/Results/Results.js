@@ -25,7 +25,11 @@ class Results extends Component {
     return (
       <form onSubmit={(event)=> this.prevenirRefresh(event)}>
         <input onChange={(event)=> this.controlarCambiosDelInput(event)} value={this.state.valorInput}/>
+
+       <button type="submit" className="button-54"  onClick={()=>this.props.buscar(this.state.valorInput , this.state.value)}>  Buscar  </button>
       </form>
+
+      
     )
   }
 }

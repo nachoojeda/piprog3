@@ -14,7 +14,6 @@ class Favorites extends Component {
     let storage = localStorage.getItem('favoritos')
     
     if (storage !== null) {
-      let trackFavs = []
       let favorites = JSON.parse(storage)
 
       Promise.all(favorites.map(element => {
@@ -47,8 +46,7 @@ class Favorites extends Component {
               <Card
                 key={`${Date.now()}-${idx}`}
                 info={chart}
-                borrar={(id) => this.borrar(id)}
-                favorito={(id) => {}}
+                borrar={(id) => this.borrar(id)}              
               />
             )
           }

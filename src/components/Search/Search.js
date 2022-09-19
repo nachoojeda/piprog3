@@ -8,9 +8,7 @@ class Search extends Component {
             valorInput: ''
         }
     }
-    otroMetodo(){
-      console.log('otro metodo')
-    }
+
     prevenirRefresh(event){
         event.preventDefault()
     }

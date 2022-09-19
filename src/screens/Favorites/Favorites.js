@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Card from "../../components/Card/Card";
-import List from '../../components/List/List';
 
 class Favorites extends Component {
   constructor(props){

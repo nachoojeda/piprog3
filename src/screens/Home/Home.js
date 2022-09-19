@@ -19,13 +19,14 @@ class Home extends Component {
   }
 
   buscarData(valor) {
-    if(valor.length > 0) {
+    if(valor !== '') {
       fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/search?q=${valor}`)
         .then(resp => resp.json())
         .then(data => {
           this.setState({
             resultadosBusqueda: data.data,
-            ready: true
+            ready: this.state.ready,
+            resultados: this.state.resultados 
           })
         })
         .catch(err => console.log(err))
@@ -40,7 +41,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?index=10')
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?offset=10&index=12')
       .then(resp => resp.json())
       .then(data => {
         this.setState({
@@ -51,8 +52,6 @@ class Home extends Component {
       })
       .catch(err => console.log(err))
   }
-
-
 
   render() {
 

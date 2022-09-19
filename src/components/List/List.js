@@ -15,7 +15,7 @@ class List extends Component {
   }
 
   componentDidMount() {
-    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?index=10')
+    fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?offset=10')
       .then(resp => resp.json())
       .then(data => {
         this.setState({

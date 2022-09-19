@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './styles.css'
 import { Link } from "react-router-dom";
-
+import ReactAudioPlayer from 'react-audio-player';
 class Card extends Component {
     constructor(props) {
         super(props)
@@ -104,6 +104,10 @@ class Card extends Component {
                             Artist: {this.props.info.artist.name}
                             <br></br>
                             Ranking: {this.props.info.position}
+                            <ReactAudioPlayer 
+                                src={this.props.info.preview} 
+                                controls
+                                />
                         </p>
                         :
                         ''

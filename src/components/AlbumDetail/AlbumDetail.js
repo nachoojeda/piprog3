@@ -53,9 +53,6 @@ class AlbumDetails extends Component {
 
                                 <ReactPlayer url='{this.state.songs.preview}' />
 
-
-
-
                             </div>
 
                             : <ColorRing

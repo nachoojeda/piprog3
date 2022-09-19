@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Card from '../Card/Card'
 import './styles.css'
 import { Link } from "react-router-dom";
-
+import ReactAudioPlayer from 'react-audio-player';
 
 class List extends Component {
   constructor(props) {

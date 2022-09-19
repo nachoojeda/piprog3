@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import './styles.css'
 
-class Results extends Component {
+class Search extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -24,9 +25,7 @@ class Results extends Component {
   render() {
     return (
       <form onSubmit={(event)=> this.prevenirRefresh(event)}>
-        <input onChange={(event)=> this.controlarCambiosDelInput(event)} value={this.state.valorInput}/>
-
-       <button type="submit" className="button-54"  onClick={()=>this.props.buscar(this.state.valorInput , this.state.value)}>  Buscar  </button>
+        <input placeholder='Buscar' onChange={(event)=> this.controlarCambiosDelInput(event)} value={this.state.valorInput}/>
       </form>
 
       
@@ -34,4 +33,4 @@ class Results extends Component {
   }
 }
 
-export default  Results
+export default  Search

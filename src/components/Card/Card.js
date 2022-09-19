@@ -13,6 +13,27 @@ class Card extends Component {
         }
     }
 
+    componentDidMount() {
+
+        let storage = localStorage.getItem('favoritos')
+        
+        if (storage !== null) {
+          let favoritos = JSON.parse(storage)
+          let buscarFavorito = favoritos.find(id => id == this.props.info.id)
+
+          if(buscarFavorito != null) {
+            this.setState({
+                showMore: false,
+                textoBoton: 'Show more',
+                favorito: true,
+                backup: [],
+            })
+          }
+
+        }
+           
+       }
+
     changeShowMore() {
         if (this.state.showMore) {
             this.setState({
@@ -50,6 +71,7 @@ class Card extends Component {
         let favsFiltered = favsParsed.filter(elm => elm !== id)
         let favsToString = JSON.stringify(favsFiltered)
         localStorage.setItem('favoritos', favsToString)
+        this.props.borrar(id)
         this.setState({
             favorito: false
         })
@@ -70,11 +92,11 @@ class Card extends Component {
             <div className="character-card">
 
                 {
-                    this.props.info.type==="track" ?
-                    <Link to={`/SongDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.cover_big || this.props.info.album.cover_big} /> </Link>
-                    :
-                    <Link to={`/AlbumDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.cover_big || this.props.info.album.cover_big} /> </Link>
-                }    
+                    this.props.info.type === "track" ?
+                        <Link to={`/SongDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.cover_big || this.props.info.album.cover_big} /> </Link>
+                        :
+                        <Link to={`/AlbumDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.cover_big || this.props.info.album.cover_big} /> </Link>
+                }
                 <h4>{this.props.info.title}</h4>
                 {
                     this.state.showMore ?
@@ -91,6 +113,7 @@ class Card extends Component {
                     () => this.changeShowMore()
                 }>{this.state.textoBoton}
                 </button>
+                
                 {
                     this.state.favorito ?
                         <button onClick={(id) => this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>

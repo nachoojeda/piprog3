@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import List from '../../components/List/List'
 import { ColorRing } from 'react-loader-spinner'
-import Results from '../../components/Results/Results';
+import Search from '../../components/Search/Search';
 import Card from '../../components/Card/Card';
 import { Link } from "react-router-dom";
 
@@ -11,50 +11,68 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      result: {},
-      ready: false
-
+      ready: false,
+      resultadosBusqueda: [],
+      resultados: []
     }
   }
 
   buscarData(valor) {
-    fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/search?q=${valor}`)
-      .then(resp => resp.json())
-      .then(data => {
-        console.log(data)
-        this.setState({
-          resultadosBusqueda: data.data,
-          ready: true
+    if(valor.length > 0) {
+      fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/search?q=${valor}`)
+        .then(resp => resp.json())
+        .then(data => {
+          this.setState({
+            resultadosBusqueda: data.data,
+            ready: true
+          })
         })
+        .catch(err => console.log(err))
+    }
+    else{
+      this.setState({
+        resultadosBusqueda: [],
+        ready: this.state.ready,
+        resultados: this.state.resultados
       })
-      .catch(err => console.log(err))
+    }
   }
 
   componentDidMount() {
     fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart?/0/tracks?index=10')
       .then(resp => resp.json())
       .then(data => {
-        console.log(data)
         this.setState({
-          result: data,
-          ready: true
+          ready: true,
+          resultadosBusqueda: [],
+          resultados: data
         })
       })
-
       .catch(err => console.log(err))
   }
 
 
 
   render() {
+
     return (
       <>
-        <Results metodoQueBusca={(valor) => this.buscarData(valor)} />
+        <Search metodoQueBusca={(valor) => this.buscarData(valor)} />
 
         {
-          this.state.readyResultados
+          this.state.resultadosBusqueda.length > 0
             ?
-            <Card esBusqueda={true} info={this.state.resultadosBusqueda} />
+            <>
+              <h1 className='titulo'>Resultados</h1>
+              <section className="card-container">
+                {this.state.resultadosBusqueda.map((chart, idx) => <Card
+                  key={`${Date.now()}-${idx}`}
+                  info={chart}
+                  borrar={(name) => this.borrar(name)}
+                  favorito={(id) => this.favorites(id)}
+                />)}
+              </section>
+            </>
             : ''
         }
 
@@ -62,13 +80,13 @@ class Home extends Component {
           {
             this.state.ready ?
               <div>
-                <List info={this.state.result.tracks.data} titulo={'Top Charts'} />
+                <List info={this.state.resultados.tracks.data} titulo={'Top Charts'} />
 
                 <button className='boton' onClick={() => this.verTodas()}>
                   <Link to='/Every' > Ver todas las canciones </Link>
                 </button>
 
-                <List info={this.state.result.albums.data} titulo={'Top Albums'} />
+                <List info={this.state.resultados.albums.data} titulo={'Top Albums'} />
                 <button className='boton' onClick={() => this.verTodas()}>
                   <Link to='/EveryAlbum' > Ver todos los albumes </Link>
                 </button>

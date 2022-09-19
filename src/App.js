@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import Home from './screens/Home/Home';
 import Error from './components/Error/Error'
 import Every from './components/Every/Every';
-import Favorites from './components/Favorites/Favorites';
+import Favorites from './screens/Favorites/Favorites';
 import Details from "./components/SongDetail/SongDetail";
 import EveryAlbum from "./components/EveryAlbum/EveryAlbum";
 import AlbumDetails from "./components/AlbumDetail/AlbumDetail";

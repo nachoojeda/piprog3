@@ -1,0 +1,11 @@
+.boton {
+    margin: 47%;
+    margin-top: 0;
+    margin-bottom: 0;
+    
+}
+
+.pepe {
+    display: flex;
+    justify-content: center;
+}

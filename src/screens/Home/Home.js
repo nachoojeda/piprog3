@@ -4,6 +4,7 @@ import { ColorRing } from 'react-loader-spinner'
 import Search from '../../components/Search/Search';
 import Card from '../../components/Card/Card';
 import { Link } from "react-router-dom";
+import './styles.css'
 
 
 class Home extends Component {
@@ -80,13 +81,13 @@ class Home extends Component {
           {
             this.state.ready ?
               <div>
-                <List info={this.state.resultados.tracks.data} titulo={'Top Charts'} />
+                <List className='pepe' info={this.state.resultados.tracks.data} titulo={'Top Charts'} />
 
                 <button className='boton' onClick={() => this.verTodas()}>
                   <Link to='/Every' > Ver todas las canciones </Link>
                 </button>
 
-                <List info={this.state.resultados.albums.data} titulo={'Top Albums'} />
+                <List className='pepe'info={this.state.resultados.albums.data} titulo={'Top Albums'} />
                 <button className='boton' onClick={() => this.verTodas()}>
                   <Link to='/EveryAlbum' > Ver todos los albumes </Link>
                 </button>

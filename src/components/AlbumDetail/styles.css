@@ -1,0 +1,16 @@
+.huno {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.dive {
+    display: flex;
+    align-items: center;
+    padding: 1cm;
+}
+
+.dive2 {
+    padding: 5cm;
+    
+}

@@ -36,20 +36,21 @@ class AlbumDetails extends Component {
                 <div>
                     {
                         this.state.ready ?
-                            <div>
+                            <div className='dive'>
                                 <img src={this.state.albums.cover_big} />
-                                <h1>{this.state.albums.title}</h1>
-                                <h3>{this.state.albums.artist.name}</h3>
+                                <div className='dive2'>
+                                <h1 className='huno'>{this.state.albums.title}</h1>
+                                <h3 className='huno'>{this.state.albums.artist.name}</h3>
                                
                                 <ul>
-                                <h1>Canciones del album:</h1>
+                                <h1 className='huno'>Canciones del album:</h1>
                                     {
                                         this.state.albums.tracks.data.map((track, i) => {
                                             return (<li>{++i}. {track.title} - {track.artist.name} ({track.duration})</li>)
                                         })
                                     }
                                 </ul>
-
+                                    </div>
 
                                 <ReactPlayer url='{this.state.songs.preview}' />
 

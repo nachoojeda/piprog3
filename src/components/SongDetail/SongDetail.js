@@ -35,20 +35,18 @@ class Details extends Component {
                 <div>
                     {
                         this.state.ready ?
-                            <div>
+                            <div className='dive'>
                                 <img src={this.state.songs.album.cover_big} />
-                                <h1>{this.state.songs.title}</h1>
-                                <h3>{this.state.songs.artist.name}</h3>
-                                <h3>{this.state.songs.album.title}</h3>
+                                <div className='dive2'>
+                                <h1 className='huno'>{this.state.songs.title}</h1>
+                                <h3 className='huno'>{this.state.songs.artist.name}</h3>
+                                <h3 className='huno'>{this.state.songs.album.title}</h3>
                                 
                                 <ReactAudioPlayer 
                                 src={this.state.songs.preview} 
                                 controls
                                 />
-                                
-
-                                
-                                
+                                </div>
                             </div>
 
                             : <ColorRing

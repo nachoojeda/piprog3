@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Card from '../Card/Card'
 import { ColorRing } from 'react-loader-spinner'
 import Search from '../../components/Search/Search';
+
 class EveryAlbum extends Component {
   constructor(props) {
     super(props)
@@ -111,8 +112,10 @@ class EveryAlbum extends Component {
 
 
                 </section>
+                <div className='divevery'>
                 <button className='button-71' onClick={() => this.cargarMas()}>Cargar mas</button>
                 <button className='button-71' onClick={() => this.backup()}>Volver atras</button>
+                </div>
               </div>
 
               :

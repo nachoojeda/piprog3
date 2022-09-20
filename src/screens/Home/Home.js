@@ -19,19 +19,19 @@ class Home extends Component {
   }
 
   buscarData(valor) {
-    if(valor !== '') {
+    if (valor !== '') {
       fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/search?q=${valor}`)
         .then(resp => resp.json())
         .then(data => {
           this.setState({
             resultadosBusqueda: data.data,
             ready: this.state.ready,
-            resultados: this.state.resultados 
+            resultados: this.state.resultados
           })
         })
         .catch(err => console.log(err))
     }
-    else{
+    else {
       this.setState({
         resultadosBusqueda: [],
         ready: this.state.ready,
@@ -79,19 +79,20 @@ class Home extends Component {
         <div>
           {
             this.state.ready ?
-              <div>
+              <>
                 <List className='pepe' info={this.state.resultados.tracks.data} titulo={'Top Charts'} />
-
-                <button className='button-71' onClick={() => this.verTodas()}>
-                  <Link to='/Every' > Ver todas las canciones </Link>
-                </button>
-
-                <List className='pepe'info={this.state.resultados.albums.data} titulo={'Top Albums'} />
-                <button className='button-71' onClick={() => this.verTodas()}>
-                  <Link to='/EveryAlbum' > Ver todos los albumes </Link>
-                </button>
-              </div>
-
+                < div className='divhome'>
+                  <button className='button-71' onClick={() => this.verTodas()}>
+                    <Link to='/Every' > Ver todas las canciones </Link>
+                  </button>
+                </div>
+                <List className='pepe' info={this.state.resultados.albums.data} titulo={'Top Albums'} />
+                < div className='divhome'>
+                  <button className='button-71' onClick={() => this.verTodas()}>
+                    <Link to='/EveryAlbum' > Ver todos los albumes </Link>
+                  </button>
+                </div>
+              </>
               : <ColorRing
                 visible={true}
                 height="80"

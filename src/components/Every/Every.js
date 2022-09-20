@@ -17,19 +17,19 @@ class Every extends Component {
     }
   }
   buscarData(valor) {
-    if(valor !== '') {
+    if (valor !== '') {
       fetch(`https://thingproxy.freeboard.io/fetch/https://api.deezer.com/search/track?q=${valor}`)
         .then(resp => resp.json())
         .then(data => {
           this.setState({
             resultadosBusqueda: data.data,
             ready: this.state.ready,
-            resultados: this.state.resultados 
+            resultados: this.state.resultados
           })
         })
         .catch(err => console.log(err))
     }
-    else{
+    else {
       this.setState({
         resultadosBusqueda: [],
         ready: this.state.ready,
@@ -116,9 +116,10 @@ class Every extends Component {
                 {/* <a onClick={
                         ()=> this.changeShowMore()
                     }>{this.state.textoBoton}</a> */}
-
-                <button className='button-71' onClick={() => this.cargarMas()}>Cargar mas</button>
-                <button className='button-71' onClick={() => this.backup()}>Volver atras</button>
+                <div className='divevery'>
+                  <button className='button-71' onClick={() => this.cargarMas()}>Cargar mas</button>
+                  <button className='button-71' onClick={() => this.backup()}>Volver atras</button>
+                </div>
               </div>
 
               :

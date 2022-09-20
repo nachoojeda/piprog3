@@ -8,6 +8,11 @@ div .loader{
     display: flexbox;
     justify-content: center;
 }
+.divevery {
+  width: 100%;
+  justify-content: center;
+  margin-left: 36%;
+}
 /* CSS */
 .button-71 {
     

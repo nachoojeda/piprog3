@@ -17,8 +17,9 @@ nav ul {
 }
 
 .logo{
-
-   height: 40px;
+    margin-top: 0px;
+    vertical-align: middle;
+    height: 40px;
 }
 
 .main-nav li,

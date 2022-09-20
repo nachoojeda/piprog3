@@ -82,12 +82,12 @@ class Home extends Component {
               <div>
                 <List className='pepe' info={this.state.resultados.tracks.data} titulo={'Top Charts'} />
 
-                <button className='boton' onClick={() => this.verTodas()}>
+                <button className='button-71' onClick={() => this.verTodas()}>
                   <Link to='/Every' > Ver todas las canciones </Link>
                 </button>
 
                 <List className='pepe'info={this.state.resultados.albums.data} titulo={'Top Albums'} />
-                <button className='boton' onClick={() => this.verTodas()}>
+                <button className='button-71' onClick={() => this.verTodas()}>
                   <Link to='/EveryAlbum' > Ver todos los albumes </Link>
                 </button>
               </div>

@@ -9,7 +9,8 @@ function Header() {
     return (
         <nav>
             
-            <h2><img className= 'logo' src="https://1000marcas.net/wp-content/uploads/2020/02/Logo-Itunes.png" alt=""/></h2>
+            <h1><img className= 'logo' src="https://1000marcas.net/wp-content/uploads/2020/02/Logo-Itunes.png" alt=""/>UrMusic</h1> 
+            
             
             <ul className= 'main-nav' >
 

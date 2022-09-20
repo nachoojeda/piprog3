@@ -38,14 +38,15 @@ class Details extends Component {
                             <div className='dive'>
                                 <img src={this.state.songs.album.cover_big} />
                                 <div className='dive2'>
-                                <h1 className='huno'>{this.state.songs.title}</h1>
-                                <h3 className='huno'>{this.state.songs.artist.name}</h3>
-                                <h3 className='huno'>{this.state.songs.album.title}</h3>
-                                
-                                <ReactAudioPlayer 
-                                src={this.state.songs.preview} 
-                                controls
-                                />
+                                    <h1 className='huno'>{this.state.songs.title}</h1>
+                                    <h3 className='huno'>{this.state.songs.artist.name}</h3>
+                                    <h3 className='huno'>{this.state.songs.album.title}</h3>
+
+                                    <ReactAudioPlayer
+                                        src={this.state.songs.preview}
+                                        controls
+                                    />
+
                                 </div>
                             </div>
 

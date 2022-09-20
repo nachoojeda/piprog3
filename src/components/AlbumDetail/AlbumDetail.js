@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import Card from '../Card/Card'
 import { ColorRing } from 'react-loader-spinner'
-import ReactPlayer from 'react-player/youtube'
-import List from '../List/List'
+import ReactAudioPlayer from 'react-audio-player';
 
 import './styles.css'
 
@@ -37,23 +35,25 @@ class AlbumDetails extends Component {
                     {
                         this.state.ready ?
                             <div className='dive'>
-                                <img src={this.state.albums.cover_big} />
+                                <img className='fotoAlbum' src={this.state.albums.cover_big} />
+
                                 <div className='dive2'>
-                                <h1 className='huno'>{this.state.albums.title}</h1>
-                                <h3 className='huno'>{this.state.albums.artist.name}</h3>
-                               
-                                <ul>
-                                <h1 className='huno'>Canciones del album:</h1>
-                                    {
-                                        this.state.albums.tracks.data.map((track, i) => {
-                                            return (<li>{++i}. {track.title} - {track.artist.name} ({track.duration})</li>)
-                                        })
-                                    }
-                                </ul>
-                                    </div>
-
-                                <ReactPlayer url='{this.state.songs.preview}' />
-
+                                    <h1 className='huno'>{this.state.albums.title} - {this.state.albums.artist.name}</h1>
+                                    <ul>
+                                        <h3 className='huno'>Canciones del album:</h3>
+                                        {
+                                            this.state.albums.tracks.data.map((track, i) => {
+                                                return (<li><h5 className='huno'>
+                                                    {++i}. {track.title} - {track.artist.name} ({track.duration}) <ReactAudioPlayer
+                                                    src={track.preview}
+                                                    controls
+                                                />
+                                                </h5>
+                                                </li>)
+                                            })
+                                        }
+                                    </ul>
+                                </div>
                             </div>
 
                             : <ColorRing

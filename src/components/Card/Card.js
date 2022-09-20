@@ -16,23 +16,23 @@ class Card extends Component {
     componentDidMount() {
 
         let storage = localStorage.getItem('favoritos')
-        
-        if (storage !== null) {
-          let favoritos = JSON.parse(storage)
-          let buscarFavorito = favoritos.find(id => id == this.props.info.id)
 
-          if(buscarFavorito != null) {
-            this.setState({
-                showMore: false,
-                textoBoton: 'Show more',
-                favorito: true,
-                backup: [],
-            })
-          }
+        if (storage !== null) {
+            let favoritos = JSON.parse(storage)
+            let buscarFavorito = favoritos.find(id => id == this.props.info.id)
+
+            if (buscarFavorito != null) {
+                this.setState({
+                    showMore: false,
+                    textoBoton: 'Show more',
+                    favorito: true,
+                    backup: [],
+                })
+            }
 
         }
-           
-       }
+
+    }
 
     changeShowMore() {
         if (this.state.showMore) {
@@ -71,10 +71,10 @@ class Card extends Component {
         let favsFiltered = favsParsed.filter(elm => elm !== id)
         let favsToString = JSON.stringify(favsFiltered)
         localStorage.setItem('favoritos', favsToString)
-        this.props.borrar(id)
         this.setState({
             favorito: false
         })
+        this.props.borrar(id)
     }
 
     backup() {
@@ -83,14 +83,9 @@ class Card extends Component {
         })
     }
 
-
-
     render() {
         return (
-
-
             <div className="character-card">
-
                 {
                     this.props.info.type === "track" ?
                         <Link to={`/SongDetail/${this.props.info.id}`}> <img className="foto" src={this.props.info.cover_big || this.props.info.album.cover_big} /> </Link>
@@ -104,25 +99,24 @@ class Card extends Component {
                             Artist: {this.props.info.artist.name}
                             <br></br>
                             Ranking: {this.props.info.position}
-                            <ReactAudioPlayer 
-                                src={this.props.info.preview} 
+                            <ReactAudioPlayer
+                                src={this.props.info.preview}
                                 controls
-                                />
+                            />
                         </p>
                         :
                         ''
                 }
 
-                <button onClick={
-                    () => this.changeShowMore()
-                }>{this.state.textoBoton}
+                <button className='button-10' onClick={() => this.changeShowMore()}>
+                    {this.state.textoBoton}
                 </button>
-                
+
                 {
                     this.state.favorito ?
-                        <button onClick={(id) => this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>
+                        <button className='button-10' onClick={(id) => this.sacarFavorito(this.props.info.id)}>Delete from favorites</button>
                         :
-                        <button onClick={(id) => this.favorito(this.props.info.id)}>Add to favorites</button>
+                        <button className='button-10' onClick={(id) => this.favorito(this.props.info.id)}>Add to favorites</button>
                 }
                 {/* <button onClick={() => this.props.borrar(this.props.info.id)}>Delete chart</button>  */}
 

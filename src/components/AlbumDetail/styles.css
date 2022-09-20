@@ -1,16 +1,24 @@
 .huno {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-style: bold;
     
 }
 
+.fotoAlbum{
+    display:flex;
+    width: 75%;
+    padding: 50px;
+}
+
 .dive {
-    display: flex;
-    align-items: center;
-    padding: 1cm;
+    align-items:flex-start;
+    padding: 5px;
 }
 
 .dive2 {
-    padding: 5cm;
+    padding: 0cm;
     
 }
